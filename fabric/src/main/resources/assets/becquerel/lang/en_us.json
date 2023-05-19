@@ -1,0 +1,9 @@
+{
+  "bq.becquerel": "%d Bq/s",
+  "itemGroup.becquerel.becquerel": "Becquerel",
+  "block.becquerel.uranium_ore": "Uranium Ore",
+  "block.becquerel.deepslate_uranium_ore": "Deepslate Uranium Ore",
+  "block.becquerel.uranium_block": "Uranium Block",
+  "item.becquerel.raw_uranium": "Raw Uranium",
+  "item.becquerel.uranium_ingot": "Uranium Ingot"
+}

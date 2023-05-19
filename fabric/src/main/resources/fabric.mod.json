@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "becquerel",
+  "version": "${version}",
+  "name": "Becquerel",
+  "description": "",
+  "authors": [
+    "chaottic"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/chaottic/becquerel"
+  },
+  "license": "MIT",
+  "icon": "assets/becquerel/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.chaottic.becquerel.common.Becquerel"
+    ],
+    "client": [
+      "com.chaottic.becquerel.client.BecquerelClient"
+    ]
+  },
+  "mixins": [
+    "becquerel.mixin.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.19",
+    "fabric-api": "*",
+    "minecraft": "~1.19.4",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
