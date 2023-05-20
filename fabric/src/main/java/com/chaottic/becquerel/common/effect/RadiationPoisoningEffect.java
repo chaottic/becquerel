@@ -1,5 +1,6 @@
 package com.chaottic.becquerel.common.effect;
 
+import com.chaottic.becquerel.common.BecquerelDamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,7 +22,6 @@ public final class RadiationPoisoningEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity livingEntity, int i) {
         super.applyEffectTick(livingEntity, i);
-
-        livingEntity.hurt(livingEntity.damageSources().magic(), 1.0F);
+        livingEntity.hurt(livingEntity.damageSources().source(BecquerelDamageTypes.FATAL_RADIATION_POISONING), 1.0F);
     }
 }

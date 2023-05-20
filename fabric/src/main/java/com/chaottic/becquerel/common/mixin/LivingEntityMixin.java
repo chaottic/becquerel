@@ -29,7 +29,7 @@ public final class LivingEntityMixin {
                         return;
                     }
 
-                    livingEntity.addEffect(new MobEffectInstance(BecquerelMobEffects.RADIATION_POISONING, 100, 1));
+                    livingEntity.addEffect(new MobEffectInstance(BecquerelMobEffects.RADIATION_POISONING, 800, 0));
                 }
             }
         }

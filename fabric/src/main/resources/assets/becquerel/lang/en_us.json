@@ -9,5 +9,6 @@
   "item.becquerel.raw_uranium": "Raw Uranium",
   "item.becquerel.uranium_ingot": "Uranium Ingot",
   "item.becquerel.uranium_hexafluoride_gas_bucket": "Uranium Hexafluoride Gas Bucket",
-  "effect.becquerel.radiation_poisoning": "Radiation Poisoning"
+  "effect.becquerel.radiation_poisoning": "Radiation Poisoning",
+  "death.attack.fatal_radiation_poisoning": "%1$s succumbed to fatal radiation illness"
 }
