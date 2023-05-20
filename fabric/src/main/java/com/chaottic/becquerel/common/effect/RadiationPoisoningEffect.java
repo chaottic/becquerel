@@ -7,7 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public final class RadiationPoisoningEffect extends MobEffect {
     public RadiationPoisoningEffect() {
-        super(MobEffectCategory.HARMFUL, 0xFFFFFF);
+        super(MobEffectCategory.HARMFUL, 0x64EA46);
     }
 
     @Override

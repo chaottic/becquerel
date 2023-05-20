@@ -2,6 +2,7 @@ package com.chaottic.becquerel.common.mixin;
 
 import com.chaottic.becquerel.common.Becquerel;
 import com.chaottic.becquerel.common.BecquerelChunk;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,13 +18,17 @@ public final class LevelChunkMixin implements BecquerelChunk {
 
     private long getBecquerel(LevelChunkSection section) {
         var sum = 0;
-        for (var i = 0; i < 16; i++) {
-            for (var j = 0; j < 16; j++) {
-                for (var k = 0; k < 16; k++) {
-                    var item = section.getBlockState(i, j, k).getBlock().asItem();
 
-                    sum += Becquerel.BQ.containsKey(item) ? Becquerel.BQ.getLong(item) : 0;
-                }
+        var data = section.getStates().data;
+
+        var int2IntMap = new Int2IntOpenHashMap();
+        data.storage().getAll(i -> int2IntMap.addTo(i, 1));
+
+        for (var entry : int2IntMap.int2IntEntrySet()) {
+            var item = data.palette().valueFor(entry.getIntKey()).getBlock().asItem();
+
+            if (Becquerel.BQ.containsKey(item)) {
+                sum += Becquerel.BQ.getLong(item) * entry.getIntValue();
             }
         }
 

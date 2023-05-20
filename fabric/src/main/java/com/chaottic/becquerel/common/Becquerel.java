@@ -5,8 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -33,7 +31,10 @@ public final class Becquerel implements ModInitializer {
 
     private static final double AVAGADRO = 6.02214179D * Math.pow(10.0D, 23.0D);
 
+    // Temporary.
     public static final Object2LongMap<Item> BQ = new Object2LongOpenHashMap<>();
+
+    public static final Map<Block, Block> IRRADIATION = new HashMap<>();
 
     @Override
     public void onInitialize() {
@@ -41,9 +42,17 @@ public final class Becquerel implements ModInitializer {
         BecquerelItems.registerAll();
         BecquerelMobEffects.registerAll();
 
-        BQ.put(BecquerelItems.URANIUM_ORE, (int) calculateBq(369444.0D, 238.0D, 2221000000000000000.0D));
-        BQ.put(BecquerelItems.DEEPSLATE_URANIUM_ORE, (int) calculateBq(369444.0D, 238.0D, 2221000000000000000.0D));
-        BQ.put(BecquerelItems.URANIUM_BLOCK, (int) calculateBq(1900000.0D, 235.0D, 22210000000000000.0D));
+        BQ.put(BecquerelItems.URANIUM_ORE, 1);
+        BQ.put(BecquerelItems.DEEPSLATE_URANIUM_ORE, 1);
+        BQ.put(BecquerelItems.URANIUM_BLOCK, 1);
+
+        IRRADIATION.put(Blocks.GRASS_BLOCK, Blocks.DIRT);
+        IRRADIATION.put(Blocks.PODZOL, Blocks.DIRT);
+        IRRADIATION.put(Blocks.MYCELIUM, Blocks.DIRT);
+        IRRADIATION.put(Blocks.DIRT, Blocks.COARSE_DIRT);
+        IRRADIATION.put(Blocks.OAK_LEAVES, Blocks.AIR);
+        IRRADIATION.put(Blocks.BIRCH_LEAVES, Blocks.AIR);
+        IRRADIATION.put(Blocks.SPRUCE_LEAVES, Blocks.AIR);
     }
 
     public static ResourceLocation resourceLocation(String path) {

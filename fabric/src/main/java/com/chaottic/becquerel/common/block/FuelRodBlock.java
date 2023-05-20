@@ -2,6 +2,7 @@ package com.chaottic.becquerel.common.block;
 
 import com.chaottic.becquerel.common.BecquerelComponents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Explosion;
@@ -10,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Fluids;
 
 public final class FuelRodBlock extends Block {
     public static final IntegerProperty TEMPERATURE = IntegerProperty.create("temperature", 0, 4);
@@ -21,7 +23,17 @@ public final class FuelRodBlock extends Block {
 
     @Override
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        explode(serverLevel, blockPos);
+        var temperature = blockState.getValue(TEMPERATURE);
+
+        if (!surroundedByWater(serverLevel, blockPos)) {
+            if (temperature == 4) {
+                explode(serverLevel, blockPos);
+            } else {
+                serverLevel.setBlock(blockPos, blockState.setValue(TEMPERATURE, temperature + 1), Block.UPDATE_ALL);
+            }
+        } else if (temperature > 0) {
+            serverLevel.setBlock(blockPos, blockState.setValue(TEMPERATURE, temperature - 1), Block.UPDATE_ALL);
+        }
     }
 
     @Override
@@ -44,5 +56,14 @@ public final class FuelRodBlock extends Block {
         component.addGray(16.0D);
 
         chunk.syncComponent(BecquerelComponents.GRAY);
+    }
+
+    private static boolean surroundedByWater(Level level, BlockPos blockPos) {
+        for (var direction : Direction.Plane.HORIZONTAL) {
+            if (level.getFluidState(blockPos.relative(direction)).is(Fluids.WATER)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
