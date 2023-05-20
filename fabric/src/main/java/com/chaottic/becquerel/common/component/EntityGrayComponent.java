@@ -27,4 +27,9 @@ public final class EntityGrayComponent implements GrayComponent {
     public void addGray(double gray) {
 
     }
+
+    @Override
+    public void subGray(double gray) {
+
+    }
 }

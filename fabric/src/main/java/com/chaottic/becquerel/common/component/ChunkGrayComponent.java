@@ -29,4 +29,9 @@ public final class ChunkGrayComponent implements GrayComponent {
     public void addGray(double gray) {
         this.gray += gray;
     }
+
+    @Override
+    public void subGray(double gray) {
+        this.gray -= gray;
+    }
 }

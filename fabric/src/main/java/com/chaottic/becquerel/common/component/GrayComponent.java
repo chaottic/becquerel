@@ -10,4 +10,6 @@ public interface GrayComponent extends ComponentV3, AutoSyncedComponent {
     void setGray(double gray);
 
     void addGray(double gray);
+
+    void subGray(double gray);
 }

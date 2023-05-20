@@ -23,7 +23,7 @@ public final class LivingEntityMixin {
 
         if (!level.isClientSide) {
             var chunkComponent = level.getChunkAt(livingEntity.blockPosition()).getComponent(BecquerelComponents.GRAY);
-            if (chunkComponent.getGray() > 0.0D) {
+            if (chunkComponent.getGray() > 1.0D) {
                 if (!livingEntity.hasEffect(BecquerelMobEffects.RADIATION_POISONING)) {
                     if (livingEntity instanceof Player player && player.isCreative()) {
                         return;

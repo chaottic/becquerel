@@ -13,7 +13,7 @@ public final class BecquerelBlocks {
     public static final Block DEEPSLATE_URANIUM_ORE = new Block(Properties.copy(Blocks.DIAMOND_BLOCK));
     public static final Block URANIUM_BLOCK = new Block(Properties.copy(Blocks.DIAMOND_BLOCK));
     public static final Block URANIUM_HEXAFLUORIDE_GAS = new HalfTransparentBlock(Properties.copy(Blocks.DIAMOND_BLOCK).noOcclusion().noCollission());
-    public static final Block FUEL_ROD_BLOCK = new FuelRodBlock(Properties.copy(Blocks.DIAMOND_BLOCK));
+    public static final Block FUEL_ROD_BLOCK = new FuelRodBlock(Properties.copy(Blocks.DIAMOND_BLOCK).randomTicks());
 
     private BecquerelBlocks() {}
 
