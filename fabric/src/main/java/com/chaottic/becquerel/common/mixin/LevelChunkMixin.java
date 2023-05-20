@@ -2,30 +2,35 @@ package com.chaottic.becquerel.common.mixin;
 
 import com.chaottic.becquerel.common.Becquerel;
 import com.chaottic.becquerel.common.BecquerelChunk;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunkSection;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.stream.StreamSupport;
+import java.util.Arrays;
 
 @Mixin(LevelChunk.class)
-public abstract class LevelChunkMixin implements BecquerelChunk {
-    @Shadow public abstract BlockState getBlockState(BlockPos blockPos);
-
+public final class LevelChunkMixin implements BecquerelChunk {
     @Override
     public long getBecquerel() {
-        var chunkPos = ((LevelChunk) (Object) this).getPos();
-
-        return StreamSupport.stream(BlockPos.betweenClosed(
-                chunkPos.getMinBlockX(), ((LevelChunk) (Object) this).getMinBuildHeight(), chunkPos.getMinBlockX(),
-                chunkPos.getMaxBlockX(), ((LevelChunk) (Object) this).getMaxBuildHeight(), chunkPos.getMaxBlockZ()).spliterator(), false).mapToLong(this::getBecquerel).sum();
+        return Arrays.stream(((LevelChunk) (Object) this).getSections()).filter(this::hasBecquerel).mapToLong(this::getBecquerel).sum();
     }
 
-    private long getBecquerel(BlockPos blockPos) {
-        var item = getBlockState(blockPos).getBlock().asItem();
+    private long getBecquerel(LevelChunkSection section) {
+        var sum = 0;
+        for (var i = 0; i < 16; i++) {
+            for (var j = 0; j < 16; j++) {
+                for (var k = 0; k < 16; k++) {
+                    var item = section.getBlockState(i, j, k).getBlock().asItem();
 
-        return Becquerel.BQ.containsKey(item) ? Becquerel.BQ.getLong(item) : 0;
+                    sum += Becquerel.BQ.containsKey(item) ? Becquerel.BQ.getLong(item) : 0;
+                }
+            }
+        }
+
+        return sum;
+    }
+
+    private boolean hasBecquerel(LevelChunkSection section) {
+        return section.getStates().maybeHas(blockState -> Becquerel.BQ.containsKey(blockState.getBlock().asItem()));
     }
 }

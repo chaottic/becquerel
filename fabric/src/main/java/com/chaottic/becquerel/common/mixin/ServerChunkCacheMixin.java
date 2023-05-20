@@ -22,19 +22,12 @@ public final class ServerChunkCacheMixin {
 
     @Inject(method = "tickChunks", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/chunk/LevelChunk;incrementInhabitedTime(J)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     public void tickChunks(CallbackInfo ci, long l, long m, boolean bl, LevelData levelData, ProfilerFiller profilerFiller, int i, boolean bl2, int j, NaturalSpawner.SpawnState spawnState, List list, boolean bl3, Iterator var14, ServerChunkCache.ChunkAndHolder chunkAndHolder, LevelChunk levelChunk2, ChunkPos chunkPos) {
-        if (!BecquerelComponents.GRAY.isProvidedBy(levelChunk2)) {
-            return;
+        if (l % 20 == 0) {
+            var bq = ((BecquerelChunk) levelChunk2).getBecquerel();
+            if (bq > 0) {
+                levelChunk2.getComponent(BecquerelComponents.GRAY).addGray(bq / 20.0D);
+                levelChunk2.syncComponent(BecquerelComponents.GRAY);
+            }
         }
-
-        var component = levelChunk2.getComponent(BecquerelComponents.GRAY);
-
-        var bq = ((BecquerelChunk) levelChunk2).getBecquerel();
-        if (bq > 0) {
-            var gray = bq / 20.0D;
-
-            component.addGray(gray);
-        }
-
-        levelChunk2.syncComponent(BecquerelComponents.GRAY);
     }
 }

@@ -21,7 +21,7 @@
     "client": [
       "com.chaottic.becquerel.client.BecquerelClient"
     ],
-    "cardinal-component": [
+    "cardinal-components": [
       "com.chaottic.becquerel.common.BecquerelComponents"
     ]
   },
