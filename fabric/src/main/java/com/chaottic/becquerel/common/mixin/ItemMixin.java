@@ -21,7 +21,7 @@ public final class ItemMixin {
         var item = itemStack.getItem();
 
         if (Becquerel.BQ.containsKey(item)) {
-            var bq = Becquerel.BQ.getInt(item);
+            var bq = Becquerel.BQ.getLong(item);
 
             list.add(Component.translatable("bq.becquerel", bq));
         }

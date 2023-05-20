@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "#side",
+    "down": "becquerel:block/fuel_rod_block_bottom",
+    "up": "becquerel:block/fuel_rod_block_top",
+    "north": "#side",
+    "east": "#side",
+    "south": "#side",
+    "west": "#side",
+    "side": "becquerel:block/fuel_rod_block_side"
+  }
+}

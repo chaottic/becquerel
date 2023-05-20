@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "becquerel:block/fuel_rod_block"
+    }
+  }
+}

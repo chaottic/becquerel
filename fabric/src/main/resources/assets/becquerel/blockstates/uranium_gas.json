@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "becquerel:block/uranium_gas"
+    }
+  }
+}
