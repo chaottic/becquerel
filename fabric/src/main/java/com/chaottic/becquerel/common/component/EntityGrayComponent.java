@@ -12,4 +12,19 @@ public final class EntityGrayComponent implements GrayComponent {
     public void writeToNbt(CompoundTag tag) {
 
     }
+
+    @Override
+    public double getGray() {
+        return 0;
+    }
+
+    @Override
+    public void setGray(double gray) {
+
+    }
+
+    @Override
+    public void addGray(double gray) {
+
+    }
 }

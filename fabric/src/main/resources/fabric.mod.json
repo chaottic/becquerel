@@ -41,5 +41,6 @@
     "cardinal-components": [
       "becquerel:gray"
     ]
-  }
+  },
+  "accessWidener": "becquerel.aw"
 }

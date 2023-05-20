@@ -15,6 +15,8 @@ loom {
             ideConfigGenerated(true)
         }
     }
+
+    accessWidenerPath.set(file("src/main/resources/becquerel.aw"))
 }
 
 repositories {
