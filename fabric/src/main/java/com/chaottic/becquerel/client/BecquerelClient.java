@@ -8,6 +8,6 @@ import net.minecraft.client.renderer.RenderType;
 public final class BecquerelClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(BecquerelBlocks.URANIUM_GAS, RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BecquerelBlocks.URANIUM_HEXAFLUORIDE_GAS, RenderType.translucent());
     }
 }

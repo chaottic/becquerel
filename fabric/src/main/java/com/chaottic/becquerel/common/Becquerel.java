@@ -20,6 +20,7 @@ public final class Becquerel implements ModInitializer {
                 output.accept(BecquerelItems.FUEL_ROD_BLOCK);
                 output.accept(BecquerelItems.RAW_URANIUM);
                 output.accept(BecquerelItems.URANIUM_INGOT);
+                output.accept(BecquerelItems.URANIUM_HEXAFLUORIDE_GAS_BUCKET);
             })
             .build();
 
@@ -31,6 +32,7 @@ public final class Becquerel implements ModInitializer {
     public void onInitialize() {
         BecquerelBlocks.registerAll();
         BecquerelItems.registerAll();
+        BecquerelMobEffects.registerAll();
 
         BQ.put(BecquerelItems.URANIUM_ORE, (int) calculateBq(369444.0D, 238.0D, 2221000000000000000.0D));
         BQ.put(BecquerelItems.DEEPSLATE_URANIUM_ORE, (int) calculateBq(369444.0D, 238.0D, 2221000000000000000.0D));

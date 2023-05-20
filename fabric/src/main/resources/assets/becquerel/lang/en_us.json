@@ -4,7 +4,10 @@
   "block.becquerel.uranium_ore": "Uranium Ore",
   "block.becquerel.deepslate_uranium_ore": "Deepslate Uranium Ore",
   "block.becquerel.uranium_block": "Uranium Block",
+  "block.becquerel.uranium_hexafluoride_gas": "Uranium Hexafluoride Gas",
   "block.becquerel.fuel_rod_block": "Fuel Rod Block",
   "item.becquerel.raw_uranium": "Raw Uranium",
-  "item.becquerel.uranium_ingot": "Uranium Ingot"
+  "item.becquerel.uranium_ingot": "Uranium Ingot",
+  "item.becquerel.uranium_hexafluoride_gas_bucket": "Uranium Hexafluoride Gas Bucket",
+  "effect.becquerel.radiation_poisoning": "Radiation Poisoning"
 }
