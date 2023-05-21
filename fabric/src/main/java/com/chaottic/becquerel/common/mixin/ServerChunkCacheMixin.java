@@ -1,6 +1,5 @@
 package com.chaottic.becquerel.common.mixin;
 
-import com.chaottic.becquerel.common.Becquerel;
 import com.chaottic.becquerel.common.BecquerelChunk;
 import com.chaottic.becquerel.common.BecquerelComponents;
 import net.minecraft.core.Direction;
@@ -63,22 +62,5 @@ public final class ServerChunkCacheMixin {
 
     @Inject(method = "tickChunks", at = @At(value = "INVOKE", target = "Ljava/util/Collections;shuffle(Ljava/util/List;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     public void tickChunks(CallbackInfo ci, long l, long m, boolean bl, LevelData levelData, ProfilerFiller profilerFiller, int i, boolean bl2, int j, NaturalSpawner.SpawnState spawnState, List<ServerChunkCache.ChunkAndHolder> list, boolean bl3) {
-        if (false) {
-            var random = list.get(0).chunk().getLevel().random;
-
-            for (var section : BecquerelChunk.filterForIrradiation(list)) {
-                for (var x = 0; x < 16; x++) {
-                    for (var y = 0; y < 16; y++) {
-                        for (var z = 0; z < 16; z++) {
-                            var block = section.getBlockState(x, y, z).getBlock();
-
-                            if (Becquerel.IRRADIATION.containsKey(block) && random.nextInt(25) == 0) {
-                                section.setBlockState(x, y, z, Becquerel.IRRADIATION.get(block).defaultBlockState(), true);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

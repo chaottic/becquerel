@@ -3,14 +3,17 @@ package com.chaottic.becquerel.common;
 import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.GenerationStep;
 
-import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Map;
 
 public final class Becquerel implements ModInitializer {
@@ -34,7 +37,7 @@ public final class Becquerel implements ModInitializer {
     // Temporary.
     public static final Object2LongMap<Item> BQ = new Object2LongOpenHashMap<>();
 
-    public static final Map<Block, Block> IRRADIATION = new HashMap<>();
+    public static final Map<Block, Block> IRRADIATION = new IdentityHashMap<>();
 
     @Override
     public void onInitialize() {
@@ -42,8 +45,6 @@ public final class Becquerel implements ModInitializer {
         BecquerelItems.registerAll();
         BecquerelMobEffects.registerAll();
 
-        BQ.put(BecquerelItems.URANIUM_ORE, 1);
-        BQ.put(BecquerelItems.DEEPSLATE_URANIUM_ORE, 1);
         BQ.put(BecquerelItems.URANIUM_BLOCK, 1);
 
         IRRADIATION.put(Blocks.GRASS_BLOCK, Blocks.DIRT);
@@ -53,6 +54,8 @@ public final class Becquerel implements ModInitializer {
         IRRADIATION.put(Blocks.OAK_LEAVES, Blocks.AIR);
         IRRADIATION.put(Blocks.BIRCH_LEAVES, Blocks.AIR);
         IRRADIATION.put(Blocks.SPRUCE_LEAVES, Blocks.AIR);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, BecquerelOrePlacements.URANIUM_ORE);
     }
 
     public static ResourceLocation resourceLocation(String path) {
